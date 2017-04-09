@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000012621483460}
-  - 136: {fileID: 136000012199981656}
+  - component: {fileID: 4000012621483460}
+  - component: {fileID: 136000012199981656}
   m_Layer: 2
   m_Name: Handle
   m_TagString: Untagged
@@ -32,10 +32,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011664353866}
-  - 65: {fileID: 65000010676156206}
+  - component: {fileID: 4000011664353866}
+  - component: {fileID: 65000010676156206}
   m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
@@ -48,9 +48,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010969405022}
+  - component: {fileID: 4000010969405022}
+  - component: {fileID: 114332592916106276}
   m_Layer: 0
   m_Name: SteamVROculusTouch_Left
   m_TagString: Untagged
@@ -63,10 +64,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000014178618316}
-  - 65: {fileID: 65000011952353700}
+  - component: {fileID: 4000014178618316}
+  - component: {fileID: 65000011952353700}
   m_Layer: 2
   m_Name: Ring
   m_TagString: Untagged
@@ -83,13 +84,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012621483460}
   - {fileID: 4000011664353866}
   - {fileID: 4000014178618316}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000011664353866
 Transform:
   m_ObjectHideFlags: 1
@@ -99,10 +100,10 @@ Transform:
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
   m_LocalPosition: {x: 0.0075, y: 0, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010969405022}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!4 &4000012621483460
 Transform:
   m_ObjectHideFlags: 1
@@ -112,10 +113,10 @@ Transform:
   m_LocalRotation: {x: 0.043619405, y: 0, z: 0, w: 0.9990483}
   m_LocalPosition: {x: 0.0075, y: 0, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010969405022}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
 --- !u!4 &4000014178618316
 Transform:
   m_ObjectHideFlags: 1
@@ -125,10 +126,10 @@ Transform:
   m_LocalRotation: {x: 0.3407186, y: 0.08189965, z: -0.029809028, w: 0.9361168}
   m_LocalPosition: {x: 0.0075, y: 0, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 40, y: 10, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010969405022}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 40, y: 10, z: 0}
 --- !u!65 &65000010676156206
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -153,6 +154,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.02}
   m_Center: {x: -0.0175, y: -0.04, z: 0.01}
+--- !u!114 &114332592916106276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013042522580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0a60d098f4595418f7c38af3d22f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!136 &136000012199981656
 CapsuleCollider:
   m_ObjectHideFlags: 1
