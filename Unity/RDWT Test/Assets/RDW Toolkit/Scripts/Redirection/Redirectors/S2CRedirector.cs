@@ -2,15 +2,13 @@
 using System.Collections;
 using Redirection;
 
-public class S2CRedirector : SteerToRedirector {
-
-
+public class S2CRedirector : SteerToRedirector
+{
     // Testing Parameters
-    bool dontUseTempTargetInS2C = false;
-    
+    private bool dontUseTempTargetInS2C;    
 
-    private const float S2C_BEARING_ANGLE_THRESHOLD_IN_DEGREE = 160;
-    private const float S2C_TEMP_TARGET_DISTANCE = 4;
+    public float S2C_BEARING_ANGLE_THRESHOLD_IN_DEGREE = 160;
+    public float S2C_TEMP_TARGET_DISTANCE = 4;
 
     public override void PickRedirectionTarget()
     {
@@ -41,6 +39,8 @@ public class S2CRedirector : SteerToRedirector {
                 noTmpTarget = true;
             }
         }
-    }
 
+        // Translation Gain
+        InjectTranslation(redirectionManager.MAX_TRANS_GAIN * redirectionManager.deltaPos);
+    }
 }

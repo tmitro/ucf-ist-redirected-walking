@@ -5,8 +5,8 @@ using Redirection;
 public abstract class SteerToRedirector : Redirector {
 
     // Testing Parameters
-    bool useBearingThresholdBasedRotationDampeningTimofey = true;
-    bool dontUseDampening = false;
+    public bool useBearingThresholdBasedRotationDampeningTimofey = true;
+    public bool dontUseDampening = false;
 
     // User Experience Improvement Parameters
     private const float MOVEMENT_THRESHOLD = 0.2f; // meters per second
@@ -18,16 +18,16 @@ public abstract class SteerToRedirector : Redirector {
     private const float SMOOTHING_FACTOR = 0.125f; // Smoothing factor for redirection rotations
 
     // Reference Parameters
-    protected Transform currentTarget; //Where the participant  is currently directed?
-    protected GameObject tmpTarget;
+    public Transform currentTarget; //Where the participant  is currently directed?
+    public GameObject tmpTarget;
 
     // State Parameters
-    protected bool noTmpTarget = true;
+    public bool noTmpTarget = true;
 
     // Auxiliary Parameters
-    private float rotationFromCurvatureGain; //Proposed curvature gain based on user speed
-    private float rotationFromRotationGain; //Proposed rotation gain based on head's yaw
-    private float lastRotationApplied = 0f;
+    public float rotationFromCurvatureGain; //Proposed curvature gain based on user speed
+    public float rotationFromRotationGain; //Proposed rotation gain based on head's yaw
+    public float lastRotationApplied = 0f;
     
 
     public abstract void PickRedirectionTarget();

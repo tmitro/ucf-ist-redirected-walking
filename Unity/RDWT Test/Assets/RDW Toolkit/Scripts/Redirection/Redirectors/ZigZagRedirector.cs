@@ -14,16 +14,17 @@ public class ZigZagRedirector : Redirector
     public Transform realTarget0, realTarget1;
 
     [SerializeField]
-    Vector3 RealTarget0DefaultPosition = Vector3.zero, RealTarget1DefaultPosition = new Vector3(3f, 0, 3f);
+    Vector3 RealTarget0DefaultPosition = new Vector3(1.25f, 0, 1.25f);
+    Vector3 RealTarget1DefaultPosition = new Vector3(-1.25f, 0, -1.25f);
 
     /// <summary>
     ///  How close you need to get to the waypoint for it to be considered reached.
     /// </summary>
-    float WAYPOINT_UPDATE_DISTANCE = 0.4f;
+    public float WaypointUpdateDistance = 0.4f;
     /// <summary>
     /// How slow you need to be walking to trigger next waypoint when in proximity to current target.
     /// </summary>
-    float SLOW_DOWN_VELOCITY_THRESHOLD = 0.25f;
+    public float SlowDownVelocityThreshold = 0.25f;
 
     bool headingToTarget0 = false;
     int waypointIndex = 1;
@@ -71,10 +72,8 @@ public class ZigZagRedirector : Redirector
     void Update()
     {
         //Debug.LogWarning("UPDATE");
-        updateWaypoint();
+        UpdateWaypoint();
     }
-
-
 
     void initialize()
     {
@@ -96,13 +95,13 @@ public class ZigZagRedirector : Redirector
         Vector3 pinnedPointPositionRotationCorrect = desiredRotation * pinnedPointRelativePosition;
 
         // Align first two waypoints to be on two real points (rather pin first one, and then get alignment towards the second one)
-        this.transform.rotation = desiredRotation;
-        this.transform.position = point0 + this.transform.position.y * Vector3.up - pinnedPointPositionRotationCorrect;
+        //this.transform.rotation = desiredRotation;
+        //this.transform.position = point0 + this.transform.position.y * Vector3.up - pinnedPointPositionRotationCorrect;
 
         if (redirectionManager.MOVEMENT_CONTROLLER == RedirectionManager.MovementController.AutoPilot)
         {
-            WAYPOINT_UPDATE_DISTANCE = 0.1f;
-            SLOW_DOWN_VELOCITY_THRESHOLD = 100f;
+            WaypointUpdateDistance = 0.1f;
+            SlowDownVelocityThreshold = 100f;
         }
 
         // FOR TESTING PURPOSES
@@ -114,14 +113,14 @@ public class ZigZagRedirector : Redirector
 
         // Failed attempt to fix case when user is near waypoint, but reset is triggered. Then again resets shouldn't even be fired to begin with in this scenario.
         //if (redirectionManager.MOVEMENT_CONTROLLER == RedirectionManager.MovementController.AutoPilot)
-        //    WAYPOINT_UPDATE_DISTANCE = redirectionManager.simulationManager.DISTANCE_TO_WAYPOINT_THRESHOLD;
+        //    WaypointUpdateDistance = redirectionManager.simulationManager.DISTANCE_TO_WAYPOINT_THRESHOLD;
     }
 
 
-    void updateWaypoint()
+    void UpdateWaypoint()
     {
-        bool userIsNearTarget = Utilities.FlattenedPos3D(redirectionManager.currPos - waypoints[waypointIndex].position).magnitude < WAYPOINT_UPDATE_DISTANCE;
-        bool userHasSlownDown = redirectionManager.deltaPos.magnitude / redirectionManager.GetDeltaTime() < SLOW_DOWN_VELOCITY_THRESHOLD;
+        bool userIsNearTarget = Utilities.FlattenedPos3D(redirectionManager.currPos - waypoints[waypointIndex].position).magnitude < WaypointUpdateDistance;
+        bool userHasSlownDown = redirectionManager.deltaPos.magnitude / redirectionManager.GetDeltaTime() < SlowDownVelocityThreshold;
         bool userHasMoreWaypointsLeft = waypointIndex < waypoints.Count - 1;
         if (userIsNearTarget && userHasSlownDown && userHasMoreWaypointsLeft && !redirectionManager.inReset)
         {
@@ -228,7 +227,7 @@ public class ZigZagRedirector : Redirector
         g_r = g_r > 0 ? Mathf.Min(g_r, redirectionManager.MAX_ROT_GAIN) : Mathf.Max(g_r, redirectionManager.MIN_ROT_GAIN);
 
         // Don't do translation if you're still checking out the previous target
-        if ((redirectionManager.currPos - Utilities.FlattenedPos3D(waypoints[waypointIndex - 1].position)).magnitude < WAYPOINT_UPDATE_DISTANCE)
+        if ((redirectionManager.currPos - Utilities.FlattenedPos3D(waypoints[waypointIndex - 1].position)).magnitude < WaypointUpdateDistance)
             g_t = 0;
 
         // Translation Gain
@@ -238,7 +237,7 @@ public class ZigZagRedirector : Redirector
         // Curvature Gain
         InjectCurvature(g_c * redirectionManager.deltaPos.magnitude);
 
-        //if (redirectionManager.deltaPos.magnitude / redirectionManager.GetDeltaTime() < SLOW_DOWN_VELOCITY_THRESHOLD)
+        //if (redirectionManager.deltaPos.magnitude / redirectionManager.GetDeltaTime() < SlowDownVelocityThreshold)
             //print("REPORTED USER SPEED: " + (redirectionManager.deltaPos.magnitude / redirectionManager.GetDeltaTime()).ToString("F4"));
     }
 
