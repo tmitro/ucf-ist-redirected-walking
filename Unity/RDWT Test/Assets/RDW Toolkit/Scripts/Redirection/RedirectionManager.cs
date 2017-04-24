@@ -20,7 +20,7 @@ public class RedirectionManager : MonoBehaviour {
     public float MIN_TRANS_GAIN = -0.14F;
     
     [Tooltip("Maximum rotation gain applied")]
-    [Range(0, 5)]
+    [Range(0, 15)]
     public float MAX_ROT_GAIN = 0.49F;
     
     [Tooltip("Minimum rotation gain applied")]
@@ -376,6 +376,12 @@ public class RedirectionManager : MonoBehaviour {
             resetter.InitializeReset();
             inReset = true;
         }
+    }
+
+    public void OnGUI()
+    {
+        if (inReset)
+            GUI.Label(new Rect(10, 10, 100, 20), "Rotate");
     }
 
     public void OnResetEnd()

@@ -30,7 +30,7 @@ public abstract class Resetter : MonoBehaviour {
     public void InjectRotation(float rotationInDegrees)
     {
         this.transform.RotateAround(Utilities.FlattenedPos3D(redirectionManager.headTransform.position), Vector3.up, rotationInDegrees);
-        this.GetComponentInChildren<KeyboardController>().SetLastRotation(rotationInDegrees);
+        //this.GetComponentInChildren<KeyboardController>().SetLastRotation(rotationInDegrees);
         redirectionManager.statisticsLogger.Event_Rotation_Gain_Reorientation(rotationInDegrees / redirectionManager.deltaDir, rotationInDegrees);
     }
 

@@ -68,7 +68,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149534}
-  m_Text: Spin In Place
+  m_Text: Don't leave the raft
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -81,7 +81,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 3dbc7428f67aaea4fa1ef5a12a438f8c, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4294914610
+    rgba: 4281479935
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
